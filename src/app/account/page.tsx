@@ -2,7 +2,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Input from "@/components/Input";
 
-export default function Page() {
+export default async function Page() {
   return (
     <>
       <Header></Header>
