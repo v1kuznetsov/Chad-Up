@@ -25,7 +25,7 @@ export async function login(formData: FormData) {
   }
 
   revalidatePath("/", "layout");
-  redirect("/account");
+  redirect("/");
 }
 
 export async function signup(formData: FormData) {
@@ -46,11 +46,9 @@ export async function signup(formData: FormData) {
     redirect("/error");
   }
 
-  // const currentUser = await supabase.auth.getUser();
-  // await supabase
-  //   .from("profiles")
-  //   .insert({ username: "test", user_id: currentUser.data.user?.id });
+  const currentUser = await supabase.auth.getUser();
+  await supabase.from("profiles").insert({ uuid: currentUser.data.user?.id });
 
   revalidatePath("/", "layout");
-  redirect("/account");
+  redirect("/");
 }

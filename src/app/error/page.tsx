@@ -1,3 +1,3 @@
 export default function Page() {
-  return;
+  return <div className="text-[3rem]">Ooops, something went wrong. Sorry!</div>;
 }
