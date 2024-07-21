@@ -20,6 +20,7 @@ export async function login(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword(data);
 
   if (error) {
+    console.log(error);
     redirect("/error");
   }
 
@@ -44,6 +45,11 @@ export async function signup(formData: FormData) {
     console.log(error);
     redirect("/error");
   }
+
+  // const currentUser = await supabase.auth.getUser();
+  // await supabase
+  //   .from("profiles")
+  //   .insert({ username: "test", user_id: currentUser.data.user?.id });
 
   revalidatePath("/", "layout");
   redirect("/account");

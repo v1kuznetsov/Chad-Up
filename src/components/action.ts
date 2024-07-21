@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
 
-export async function signout(formData: FormData) {
+export async function signout() {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
 
