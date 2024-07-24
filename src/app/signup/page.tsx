@@ -4,7 +4,7 @@ import { signup, login } from "./actions";
 
 export default async function Page() {
   return (
-    <main className="flex w-[25rem] flex-col items-center justify-center rounded-[0.75rem] border-2 border-black py-[1rem]">
+    <main className="flex min-w-[25%] flex-col items-center justify-center rounded-[0.75rem] border-2 border-black py-[1rem]">
       <form className="flex w-[80%] flex-col items-center justify-center space-y-4">
         <label htmlFor="email">Email address</label>
         <Input
@@ -21,7 +21,7 @@ export default async function Page() {
           id="password"
           name="password"
           type="password"
-          placeholder="********"
+          placeholder="••••••••"
           required
         ></Input>
         <div className="flex flex-col items-center justify-center space-y-4">
