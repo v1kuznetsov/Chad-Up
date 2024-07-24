@@ -12,13 +12,16 @@ export default async function Page() {
     .from("profiles")
     .select("username")
     .eq("uuid", `${data.user?.id}`);
+  const username = userProfile.data?.[0];
 
   if (data.user === null) {
     redirect("/signup");
   } else {
-    if (userProfile.data?.[0] == null) {
-      await supabase.from("profiles").insert({ uuid: data.user?.id });
+    if (username == null) {
+      const { data: newProfile } = await supabase
+        .from("profiles")
+        .insert({ uuid: data.user?.id });
     }
-    redirect(`/cabinet?${userProfile.data?.[0].username}`);
+    redirect("/cabinet");
   }
 }
