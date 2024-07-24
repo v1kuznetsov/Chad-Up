@@ -4,11 +4,21 @@ import Input from "@/components/Input";
 
 import { redirect } from "next/navigation";
 import { getUser } from "@/lib/getUser";
+import getDatabase from "@/lib/getDatabase";
 
 export default async function Page() {
+  const supabase = getDatabase();
   const userData = await getUser();
 
-  if (userData.data.user === null) {
+  const chats = await supabase
+    .from("chats")
+    .select("name")
+    .contains("users", [`${userData.profileUserData.data?.[0].username}`]);
+
+  if (
+    userData.data.user === null ||
+    userData.profileUserData.data?.[0] === undefined
+  ) {
     redirect("/signup");
   } else {
     return (

@@ -1,14 +1,11 @@
 "use server";
 
+import getDatabase from "@/lib/getDatabase";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-import { createClient } from "@/utils/supabase/server";
-import { cookies } from "next/headers";
-
 export async function signout() {
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = getDatabase();
 
   const { error } = await supabase.auth.signOut();
 

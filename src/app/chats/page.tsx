@@ -1,7 +1,9 @@
 import Header from "@/components/Header";
+import getDatabase from "@/lib/getDatabase";
 import { getUser } from "@/lib/getUser";
 
 export default async function Page() {
+  const supabase = getDatabase();
   const userData = await getUser();
   return (
     <>

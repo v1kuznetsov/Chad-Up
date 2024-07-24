@@ -1,9 +1,7 @@
-import { createClient } from "@/utils/supabase/server";
-import { cookies } from "next/headers";
+import getDatabase from "./getDatabase";
 
 export async function getUser() {
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = getDatabase();
 
   const { data } = await supabase.auth.getUser();
 

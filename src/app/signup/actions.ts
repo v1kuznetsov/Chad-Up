@@ -2,12 +2,10 @@
 
 import { redirect } from "next/navigation";
 
-import { createClient } from "@/utils/supabase/server";
-import { cookies } from "next/headers";
+import getDatabase from "@/lib/getDatabase";
 
 export async function login(formData: FormData) {
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = getDatabase();
 
   const data = {
     email: formData.get("email") as string,
@@ -26,8 +24,7 @@ export async function login(formData: FormData) {
 }
 
 export async function signup(formData: FormData) {
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = getDatabase();
 
   const data = {
     email: formData.get("email") as string,
