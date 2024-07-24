@@ -1,3 +1,11 @@
 export default function Page() {
-  return <div className="text-[3rem]">Ooops, something went wrong. Sorry!</div>;
+  return (
+    <main className="flex w-[30%] grow flex-col items-center justify-center">
+      <div className="text-center text-[2rem]">
+        <div className="text-center text-[2rem]">
+          Sorry! Something went wrong.
+        </div>
+      </div>
+    </main>
+  );
 }

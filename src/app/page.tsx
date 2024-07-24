@@ -1,3 +1,4 @@
+import { getUser } from "@/lib/getUser";
 import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -6,21 +7,17 @@ export default async function Page() {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
 
-  const { data } = await supabase.auth.getUser();
+  const userData = await getUser();
 
-  const userProfile = await supabase
-    .from("profiles")
-    .select("username")
-    .eq("uuid", `${data.user?.id}`);
-  const username = userProfile.data?.[0];
-
-  if (data.user === null) {
+  if (userData.data.user === null) {
     redirect("/signup");
   } else {
-    if (username == null) {
-      const { data: newProfile } = await supabase
-        .from("profiles")
-        .insert({ uuid: data.user?.id });
+    if (userData.data.user.user_metadata.email_verified === false) {
+      redirect("/waitAuth");
+    }
+
+    if (userData.profileUserData.data?.[0] === undefined) {
+      await supabase.from("profiles").insert({ uuid: userData.data.user?.id });
     }
     redirect("/cabinet");
   }

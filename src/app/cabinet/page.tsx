@@ -2,40 +2,30 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Input from "@/components/Input";
 
-import { createClient } from "@/utils/supabase/server";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { getUser } from "@/lib/getUser";
 
 export default async function Page() {
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const userData = await getUser();
 
-  const { data } = await supabase.auth.getUser();
-
-  const uuid = data.user?.id;
-  const UserData = await supabase
-    .from("profiles")
-    .select("username")
-    .eq("uuid", uuid);
-
-  if (data.user === null) {
+  if (userData.data.user === null) {
     redirect("/signup");
   } else {
     return (
       <>
-        <Header username={UserData.data?.[0].username}></Header>
-        <main className="flex w-[30vw] grow flex-col justify-center p-[3rem]">
-          <div className="flex flex-col items-center justify-center text-[3rem]">
+        <Header username={userData.profileUserData.data?.[0].username}></Header>
+        <main className="flex grow flex-col justify-center p-[2%]">
+          <div className="flex flex-col items-center justify-center text-[2rem]">
             <Input
               className="text-center"
               type="text"
               placeholder="@username"
               maxLength={10}
             ></Input>
-            <Link className="text-center text-[3rem]" href={""}>
+            <Link className="text-center text-[2rem]" href={""}>
               Start Chatting
             </Link>
-            <div className="flex flex-col items-center justify-center text-center text-[1.5rem]">
+            <div className="flex flex-col items-center justify-center text-center text-[1rem]">
               <span>or</span>
               <Link href={"/chats"}>Open my chats</Link>
             </div>

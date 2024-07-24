@@ -16,7 +16,9 @@ export async function login(formData: FormData) {
 
   const { error } = await supabase.auth.signInWithPassword(data);
 
-  if (error) {
+  if (error?.message === "Email not confirmed") {
+    redirect("/waitAuth");
+  } else if (error) {
     redirect(`/signup?${error.code}`);
   }
 
@@ -38,5 +40,5 @@ export async function signup(formData: FormData) {
     redirect(`/signup?${error.code}`);
   }
 
-  redirect("/");
+  redirect("/waitAuth");
 }
