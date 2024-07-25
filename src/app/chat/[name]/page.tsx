@@ -2,32 +2,53 @@ import Header from "@/components/Header";
 import Input from "@/components/Input";
 import getDatabase from "@/lib/getDatabase";
 import { getUser } from "@/lib/getUser";
-import Link from "next/link";
 import sendMessage from "./action";
-import { getURL } from "next/dist/shared/lib/utils";
 
 export default async function Page({ params }: { params: { name: string } }) {
   const supabase = getDatabase();
   const userData = await getUser();
 
-  const messages = await supabase.from("chats").select("messages");
+  const chatName = decodeURIComponent(params.name);
+
+  const chatId = await supabase.from("chats").select("id").eq("name", chatName);
+  const messages = await supabase
+    .from("messages")
+    .select("message, user")
+    .eq("chat", chatId.data?.[0].id);
+
+  console.log(messages);
+
   return (
     <>
       <Header username={userData.profileUserData.data?.[0].username}></Header>
-      <main className="flex w-[30%] grow flex-col items-center justify-center">
-        <div className="text-center text-[2rem]">
+      <main className="flex w-full grow flex-col items-center justify-center">
+        <div className="w-full p-[5%] text-center">
           {messages.data?.map((item, index) => (
-            <p key={index}>{item.messages}</p>
+            <p key={index}>
+              {item.message} "{item.user}"
+            </p>
           ))}
         </div>
-        <form>
-          <Input id="message" name="message" type="text" required></Input>
+        <form className="mt-auto flex w-full items-center justify-center space-x-4 p-[5%]">
+          <Input
+            id="message"
+            className="border-2 border-black"
+            name="message"
+            placeholder="Write a message..."
+            type="text"
+            required
+          ></Input>
           <input
             type="hidden"
             name="url"
             value={decodeURIComponent(params.name)}
           />
-          <button formAction={sendMessage}>Send</button>
+          <button
+            className="rounded-[0.75rem] border-2 border-black bg-[#d4d4d4] px-4 py-1 active:bg-[#999999]"
+            formAction={sendMessage}
+          >
+            Send
+          </button>
         </form>
       </main>
     </>

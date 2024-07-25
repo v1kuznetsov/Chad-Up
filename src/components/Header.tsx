@@ -3,7 +3,7 @@ import { signout } from "./action";
 
 export default async function Header({ username }: { username?: string }) {
   return (
-    <header className="flex w-[100%] justify-between p-[2%]">
+    <header className="mb-auto flex w-[100%] justify-between p-[2%]">
       <form>
         <button formAction={signout}>Sign out</button>
       </form>
