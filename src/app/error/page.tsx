@@ -1,10 +1,8 @@
 export default function Page() {
   return (
-    <main className="flex w-[30%] grow flex-col items-center justify-center">
+    <main className="flex h-screen w-full items-center justify-center text-center text-[2rem]">
       <div className="text-center text-[2rem]">
-        <div className="text-center text-[2rem]">
-          Sorry! Something went wrong.
-        </div>
+        Sorry! Something went wrong.
       </div>
     </main>
   );
