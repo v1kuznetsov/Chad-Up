@@ -6,17 +6,17 @@ export async function getChats() {
   const supabase = getDatabase();
   const userData = await getUser();
 
-  if (userData.profileUserData.data?.[0] === undefined) {
+  if (userData.profile === undefined) {
     redirect("/signup");
   }
 
   const chats_id = await supabase
     .from("chat_members")
     .select("chat_id")
-    .eq("user_id", [`${userData.profileUserData.data?.[0].id}`]);
+    .eq("user_id", [`${userData.profile.id}`]);
 
   if (chats_id.data?.[0] === undefined) {
-    return { data: [] };
+    return [];
   }
 
   const chatNames = await supabase
@@ -24,5 +24,5 @@ export async function getChats() {
     .select("name")
     .eq("id", chats_id.data?.[0].chat_id);
 
-  return chatNames;
+  return chatNames.data;
 }

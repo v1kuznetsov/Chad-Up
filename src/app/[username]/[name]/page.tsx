@@ -43,11 +43,7 @@ export default async function Page({ params }: { params: { name: string } }) {
           value={decodeURIComponent(params.name)}
         />
         <input type="hidden" name="chat_id" value={chatId.data?.[0].id} />
-        <input
-          type="hidden"
-          name="user_id"
-          value={userData.profileUserData.data?.[0].id}
-        />
+        <input type="hidden" name="user_id" value={userData.profile?.id} />
         <Button>Send</Button>
       </form>
     </div>

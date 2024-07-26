@@ -26,8 +26,8 @@ export async function startChat(formData: FormData) {
   const supabase = getDatabase();
   const userData = await getUser();
 
-  const userNameOne = `${userData.profileUserData.data?.[0].username}`;
-  const userIdOne = `${userData.profileUserData.data?.[0].id}`;
+  const userNameOne = `${userData.profile?.username}`;
+  const userIdOne = `${userData.profile?.id}`;
   const userNameTwo = formData.get("username") as string;
 
   const userTwoIdData = await supabase

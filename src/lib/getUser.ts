@@ -7,10 +7,10 @@ export async function getUser() {
 
   const uuid = data.user?.id;
 
-  const profileUserData = await supabase
+  const profile = await supabase
     .from("profiles")
     .select("id, username")
     .eq("uuid", uuid);
 
-  return { data, profileUserData };
+  return { authUser: data.user, profile: profile.data?.[0] };
 }

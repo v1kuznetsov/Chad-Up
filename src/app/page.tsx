@@ -7,12 +7,12 @@ export default async function Page() {
 
   const userData = await getUser();
 
-  if (userData.data.user === null) {
+  if (userData.authUser === null) {
     redirect("/signup");
   } else {
-    if (userData.profileUserData.data?.[0] === undefined) {
-      await supabase.from("profiles").insert({ uuid: userData.data.user?.id });
+    if (userData.profile === undefined) {
+      await supabase.from("profiles").insert({ uuid: userData.authUser.id });
     }
-    redirect(`/cabinet/${userData.profileUserData.data?.[0].username}`);
+    redirect(`/${userData.profile?.username}`);
   }
 }
