@@ -1,4 +1,4 @@
-import getDatabase from "./getDatabase";
+import { getDatabase } from "./getDatabase";
 
 export async function getUser() {
   const supabase = getDatabase();

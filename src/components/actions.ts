@@ -1,6 +1,6 @@
 "use server";
 
-import getDatabase from "@/lib/getDatabase";
+import { getDatabase } from "@/lib/getDatabase";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 

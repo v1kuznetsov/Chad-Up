@@ -1,8 +1,8 @@
 import { redirect } from "next/navigation";
-import getDatabase from "./getDatabase";
+import { getDatabase } from "./getDatabase";
 import { getUser } from "./getUser";
 
-export default async function getChats() {
+export async function getChats() {
   const supabase = getDatabase();
   const userData = await getUser();
 

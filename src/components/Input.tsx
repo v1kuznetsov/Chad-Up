@@ -1,14 +1,6 @@
 import { cn } from "@/utils/cn";
 
-export default function Input({
-  id,
-  name,
-  className,
-  type,
-  placeholder,
-  maxLength,
-  required,
-}: {
+type Props = {
   id?: string;
   name?: string;
   className?: string;
@@ -16,19 +8,16 @@ export default function Input({
   placeholder?: string;
   maxLength?: number;
   required?: boolean;
-}) {
+};
+
+export function Input({ className, ...props }: Props) {
   return (
     <input
-      id={id}
-      name={name}
       className={cn(
-        "w-full rounded-[0.75rem] bg-[#eeeeee] px-4 py-1 text-center text-black placeholder:text-[#777]",
+        "w-full rounded-[0.75rem] bg-[#a0d0b3] px-4 py-1 text-center text-black placeholder:text-[#777]",
         className,
       )}
-      type={type}
-      placeholder={placeholder}
-      maxLength={maxLength}
-      required={required}
+      {...props}
     />
   );
 }

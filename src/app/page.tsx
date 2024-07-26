@@ -1,4 +1,4 @@
-import getDatabase from "@/lib/getDatabase";
+import { getDatabase } from "@/lib/getDatabase";
 import { getUser } from "@/lib/getUser";
 import { redirect } from "next/navigation";
 

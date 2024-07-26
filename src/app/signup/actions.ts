@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 
-import getDatabase from "@/lib/getDatabase";
+import { getDatabase } from "@/lib/getDatabase";
 
 export async function login(formData: FormData) {
   const supabase = getDatabase();
