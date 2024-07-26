@@ -13,6 +13,6 @@ export default async function Page() {
     if (userData.profileUserData.data?.[0] === undefined) {
       await supabase.from("profiles").insert({ uuid: userData.data.user?.id });
     }
-    redirect("/cabinet");
+    redirect(`/cabinet/${userData.profileUserData.data?.[0].username}`);
   }
 }

@@ -7,7 +7,7 @@ import { getUser } from "@/lib/getUser";
 import startChat from "./action";
 import getChats from "@/lib/getChats";
 
-export default async function Page() {
+export default async function Page({ params }: { params: { name: string } }) {
   const userData = await getUser();
 
   const chatNames = await getChats();
@@ -21,28 +21,31 @@ export default async function Page() {
     return (
       <>
         <Header username={userData.profileUserData.data?.[0].username}></Header>
-        <main className="flex w-full items-center justify-center p-[2%]">
-          <div className="flex flex-col items-center justify-center space-y-3">
+        <main className="flex h-[85%] w-full p-[1%]">
+          <div className="flex w-[25%] flex-col items-center justify-start space-y-4 overflow-y-auto p-[1%] text-[1rem]">
             {chatNames.data?.map((item) => (
-              <Link key={item.name} href={`/chat/${item.name}`}>
-                {item.name}
+              <Link
+                className="hover:underline"
+                key={item.name}
+                href={`/chat/${item.name}`}
+              >
+                "{item.name}"
               </Link>
             ))}
           </div>
-          <form className="flex items-center justify-center">
-            <button
-              className="text-center text-[1.5rem]"
-              formAction={startChat}
-            >
-              Start Chatting with
-            </button>
+          <form
+            action={startChat}
+            className="flex grow flex-col items-center justify-center space-y-4 p-[1%]"
+          >
+            <button className="text-center">Chat with</button>
             <Input
-              className="max-w-[25%] text-[1.5rem]"
+              className="w-[8rem]"
               id="username"
               name="username"
               type="text"
               placeholder="@username"
               maxLength={10}
+              required
             ></Input>
           </form>
         </main>

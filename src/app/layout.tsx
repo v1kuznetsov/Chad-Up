@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${jetbrainsMono.className} flex h-[100vh] w-full flex-col items-center justify-center bg-black text-white`}
+        className={`${jetbrainsMono.className} h-[100vh] w-full bg-black text-white`}
       >
         {children}
       </body>

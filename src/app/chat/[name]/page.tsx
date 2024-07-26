@@ -11,8 +11,6 @@ export default async function Page({ params }: { params: { name: string } }) {
   const chatName = decodeURIComponent(params.name);
   const chatId = await supabase.from("chats").select("id").eq("name", chatName);
 
-  console.log(chatId, chatName);
-
   const messages = await supabase
     .from("messages")
     .select("content")
@@ -21,7 +19,6 @@ export default async function Page({ params }: { params: { name: string } }) {
   return (
     <>
       <Header username={userData.profileUserData.data?.[0].username}></Header>
-      {/* <main className="flex w-full grow flex-col items-center justify-center"> */}
       <div className="w-full p-[5%] text-center">
         {messages.data?.map((item, index) => <p key={index}>{item.content}</p>)}
       </div>
@@ -52,7 +49,6 @@ export default async function Page({ params }: { params: { name: string } }) {
           Send
         </button>
       </form>
-      {/* </main> */}
     </>
   );
 }

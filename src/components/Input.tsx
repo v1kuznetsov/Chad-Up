@@ -22,7 +22,7 @@ export default function Input({
       id={id}
       name={name}
       className={cn(
-        "w-full rounded-[0.75rem] bg-[#eeeeee] px-4 py-1",
+        "w-full rounded-[0.75rem] bg-[#eeeeee] px-4 py-1 text-center text-black placeholder:text-[#777]",
         className,
       )}
       type={type}
