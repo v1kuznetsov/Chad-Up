@@ -1,6 +1,7 @@
 "use server";
 
 import { getDatabase } from "@/lib/getDatabase";
+import { getMessages } from "@/lib/getMessages";
 import { getUser } from "@/lib/getUser";
 import { redirect } from "next/navigation";
 
@@ -60,4 +61,11 @@ export async function startChat(formData: FormData) {
     redirect(`/cabinet?${error?.code}`);
   }
   redirect(`/chat/${chatName}`);
+}
+
+export async function chatWorker(formData: FormData) {
+  const chatName = formData.get("chatName") as string;
+  await sendMessage(formData);
+  const messages = await getMessages(chatName);
+  return messages;
 }
