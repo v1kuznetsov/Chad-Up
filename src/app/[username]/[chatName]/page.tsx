@@ -17,7 +17,14 @@ export default async function Page({
     <div className="flex grow flex-col items-center justify-end">
       <div className="w-full p-[1rem] text-center">
         {chatData.messages?.map((item, index) => (
-          <p key={index}>{item.content}</p>
+          <div
+            className={`${item.user_id === userData.profile?.id ? "justify-start" : "justify-end"} flex`}
+            key={index}
+          >
+            <p className="mx-4 my-1 rounded-[0.75rem] bg-[#333333] px-4 py-1">
+              {item.content}
+            </p>
+          </div>
         ))}
       </div>
       <form
@@ -26,7 +33,7 @@ export default async function Page({
       >
         <TextArea
           id="message"
-          className="w-full resize-none rounded-[0.75rem] border-2 border-black bg-[#a0d0b3] px-4 py-1 text-start text-black placeholder:text-[#777]"
+          className=""
           name="message"
           placeholder="Write a message..."
           required
