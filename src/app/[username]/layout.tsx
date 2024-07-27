@@ -16,9 +16,10 @@ export default async function Page({ children, params }: Props) {
 
   if (!userData.authUser || !userData.profile) {
     redirect("/signup");
-  } else if (params.username !== userData.profile.username) {
-    redirect("/error/?message=Wrong username");
   }
+  // else if (params.username !== userData.profile.username) {
+  //   redirect("/error/?message=Wrong username");
+  // }
   return (
     <>
       <Header username={userData.profile.username}></Header>
@@ -31,12 +32,12 @@ export default async function Page({ children, params }: Props) {
                 key={item.name}
                 href={`/${userData.profile?.username}/${item.name}`}
               >
-                "{item.name}"
+                {item.name}
               </Link>
             ))}
           </div>
           <Link
-            className="mt-auto w-[100%] rounded-[0.75rem] bg-[#80d0b3] px-4 py-1 text-center hover:underline active:bg-[#63d0b3] active:text-black"
+            className="mt-auto w-[100%] rounded-[0.75rem] border-2 border-[#80d0b3] bg-transparent px-4 py-1 text-center text-[#80d0b3] hover:underline active:bg-[#63d0b3] active:text-[#ffffff]"
             href={`/${userData.profile.username}`}
           >
             Close chat

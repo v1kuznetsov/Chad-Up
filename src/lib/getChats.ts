@@ -10,19 +10,21 @@ export async function getChats() {
     redirect("/signup");
   }
 
-  const chats_id = await supabase
+  const chatIdsData = await supabase
     .from("chat_members")
     .select("chat_id")
     .eq("user_id", [`${userData.profile.id}`]);
 
-  if (chats_id.data?.[0] === undefined) {
+  if (chatIdsData.data?.[0] === undefined) {
     return [];
   }
+
+  const chatIds = chatIdsData.data.map((chat) => chat.chat_id);
 
   const chatNames = await supabase
     .from("chats")
     .select("name")
-    .eq("id", chats_id.data?.[0].chat_id);
+    .in("id", [chatIds]);
 
   return chatNames.data;
 }

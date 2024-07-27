@@ -1,5 +1,5 @@
 import { getUser } from "@/lib/getUser";
-import { chatWorker } from "../actions";
+import { chatWorker, sendMessage } from "../actions";
 import { Button } from "@/components/Button";
 import { getMessages } from "@/lib/getMessages";
 import { TextArea } from "@/components/TextArea";
@@ -21,7 +21,7 @@ export default async function Page({
         ))}
       </div>
       <form
-        action={chatWorker}
+        action={sendMessage}
         className="flex w-full items-center justify-center gap-[1rem] px-[1rem]"
       >
         <TextArea

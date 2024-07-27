@@ -11,7 +11,7 @@ export function Button({ className, ...props }: Props) {
   return (
     <button
       className={cn(
-        "rounded-[0.75rem] bg-[#80d0b3] px-4 py-1 hover:underline active:bg-[#63d0b3] active:text-black",
+        "rounded-[0.75rem] border-2 border-[#80d0b3] bg-transparent px-4 py-1 text-[#80d0b3] hover:underline active:bg-[#80d0b3] active:text-[#ffffff]",
         className,
       )}
       {...props}

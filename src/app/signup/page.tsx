@@ -4,11 +4,12 @@ import { Input } from "@/components/Input";
 
 export default async function Page() {
   return (
-    <form className="flex h-screen w-full flex-col items-center justify-center gap-[1.5rem]">
-      <div className="flex flex-col items-center justify-center gap-[0.5rem]">
+    <form className="flex h-screen w-[full] flex-col items-center justify-center gap-[1.5rem]">
+      <p className="text-[3rem]">Log in</p>
+      <div className="flex w-[20rem] flex-col gap-[0.5rem]">
         <label htmlFor="email">Email address</label>
         <Input
-          className="w-[14rem]"
+          className="text-start"
           id="email"
           name="email"
           type="email"
@@ -16,10 +17,10 @@ export default async function Page() {
           required
         ></Input>
       </div>
-      <div className="flex flex-col items-center justify-center gap-[0.5rem]">
+      <div className="flex w-[20rem] flex-col gap-[0.5rem]">
         <label htmlFor="password">Password</label>
         <Input
-          className="w-[14rem]"
+          className="text-start"
           id="password"
           name="password"
           type="password"
@@ -27,8 +28,11 @@ export default async function Page() {
           required
         ></Input>
       </div>
-      <div className="flex flex-col items-center justify-center gap-[1rem]">
+      <div className="flex w-[20rem] flex-col gap-[1rem]">
         <Button formAction={login}>Log in</Button>
+      </div>
+      <div className="flex w-[20rem] items-center justify-between">
+        <p>Haven`t account?</p>
         <Button formAction={signup}>Sign up</Button>
       </div>
     </form>
