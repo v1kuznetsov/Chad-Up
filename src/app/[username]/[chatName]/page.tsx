@@ -2,6 +2,8 @@ import { getUser } from "@/lib/getUser";
 import { sendMessage } from "../actions";
 import { getMessages } from "@/lib/getMessages";
 import { TextArea } from "@/components/TextArea";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function Page({
   params,
@@ -12,8 +14,18 @@ export default async function Page({
   const userData = await getUser();
   const chatData = await getMessages(chatName);
 
+  if (userData.profile === undefined) {
+    redirect("/");
+  }
+
   return (
     <div className="flex grow flex-col items-center justify-end gap-[1rem]">
+      <Link
+        className="mb-auto rounded-[0.75rem] border-2 border-[#80d0b3] bg-transparent px-4 py-1 text-center text-[#80d0b3] hover:underline active:bg-[#63d0b3] active:text-[#ffffff]"
+        href={`/${userData.profile.username}`}
+      >
+        Close chat
+      </Link>
       <div className="w-full overflow-y-scroll text-center">
         {chatData.messages?.map((item, index) => (
           <div

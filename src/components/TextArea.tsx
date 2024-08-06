@@ -12,7 +12,7 @@ export function TextArea({ className, ...props }: Props) {
   return (
     <>
       <textarea
-        className="w-full resize-none rounded-[0.75rem] border-2 border-[#80d0b3] px-4 py-1 text-[#000000] placeholder:text-[#777777]"
+        className="relative w-full resize-none rounded-[0.75rem] border-2 border-[#80d0b3] px-4 py-1 text-[#000000] placeholder:text-[#777777]"
         {...props}
       />
       <Button className="absolute right-[2rem] border-none p-0 active:bg-transparent">
