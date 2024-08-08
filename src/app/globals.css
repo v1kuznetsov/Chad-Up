@@ -24,22 +24,27 @@
   background: #555;
 }
 
-.menu {
-  position: absolute;
+.headerChatsNav {
+  z-index: 1;
+  position: fixed;
   overflow-y: scroll;
-  top: calc(100% + 1rem);
+  top: 0;
+  height: 100%;
   width: 20rem;
-  max-height: 40rem;
+  background-color: #4e4e4e;
+  border: 2px solid #63d0b3;
+  transition: 0.2s linear;
+}
+
+.headerUserNav {
+  z-index: 1;
+  position: fixed;
+  top: -20rem;
+  right: 10rem;
+  width: 12rem;
+  height: 20rem;
   background-color: #4e4e4e;
   border: 2px solid #80d0b3;
   border-radius: 0.75rem;
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.25s all;
-}
-
-.menu.active {
-  transform: translateX(0);
-  opacity: 1;
-  visibility: visible;
+  transition: 0.2s linear;
 }
