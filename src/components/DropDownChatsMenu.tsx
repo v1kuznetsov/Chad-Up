@@ -10,17 +10,25 @@ export function DropDownChatsMenu({
   children: React.ReactNode;
 }>) {
   const [isOpen, setOpen] = useState(false);
-  const headerChatsNav = useRef(null);
-  useClickOutside(headerChatsNav, () => {
-    if (isOpen) setTimeout(() => setOpen(false), 500);
-  });
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const navRef = useRef<HTMLDivElement>(null);
+
+  useClickOutside(
+    () => {
+      setOpen(false);
+    },
+    buttonRef,
+    navRef,
+  );
 
   return (
     <div className="mr-auto">
-      <Button onClick={() => setOpen(!isOpen)}>Chats</Button>
+      <Button buttonRef={buttonRef} onClick={() => setOpen(!isOpen)}>
+        Chats
+      </Button>
       <nav
         className={`headerChatsNav left-[-20rem] flex list-none flex-col gap-4 p-[1rem] ${isOpen ? "translate-x-[100%]" : ""}`}
-        ref={headerChatsNav}
+        ref={navRef}
       >
         {children}
       </nav>

@@ -19,7 +19,7 @@ export async function Header({ username }: { username?: string }) {
         {chatNames?.map((item, index) => (
           <li className="hover:underline">
             <Link
-              key={item.name + index}
+              key={`${item.name} + ${index}`}
               href={`/${userData.profile?.username}/${item.name}`}
             >
               {item.name}
@@ -28,12 +28,12 @@ export async function Header({ username }: { username?: string }) {
         ))}
       </DropDownChatsMenu>
       <DropDownUserMenu username={username}>
-        <li className="hover:underline">
-          <Link href={""}>Account</Link>
-        </li>
-        <li className="hover:underline">
-          <Link href={""}>Settings</Link>
-        </li>
+        <Link className="hover:underline" href={""}>
+          Account
+        </Link>
+        <Link className="hover:underline" href={""}>
+          Settings
+        </Link>
       </DropDownUserMenu>
     </header>
   );

@@ -32,7 +32,6 @@
   height: 100%;
   width: 20rem;
   background-color: #4e4e4e;
-  border: 2px solid #63d0b3;
   transition: 0.2s linear;
 }
 
@@ -44,7 +43,7 @@
   width: 12rem;
   height: 20rem;
   background-color: #4e4e4e;
-  border: 2px solid #80d0b3;
+  box-shadow: 10px;
   border-radius: 0.75rem;
   transition: 0.2s linear;
 }

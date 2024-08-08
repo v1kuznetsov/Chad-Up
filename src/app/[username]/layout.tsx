@@ -23,9 +23,7 @@ export default async function Page({ children, params }: Props) {
   return (
     <>
       <Header username={userData.profile.username}></Header>
-      <main className="flex h-[85%] w-full gap-[1rem] p-[1rem]">
-        {children}
-      </main>
+      <main className="flex w-full grow gap-[1rem] p-[1rem]">{children}</main>
     </>
   );
 }
